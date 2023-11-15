@@ -1,0 +1,25 @@
+.menu-pantalla-principal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.elemento-menu {
+  position: relative;
+  background: rgb(167,84,0);
+  background: linear-gradient(180deg, rgba(167,84,0,1) 0%, rgba(191,101,4,1) 35%, rgba(237,132,11,1) 100%);
+  border-radius: 4px;
+  padding: 2rem;
+  font: 500 1.4rem 'Roboto', sans-serif;
+  text-align: center;
+}
+
+.elemento-menu::before {
+  position: absolute;
+  font-family: 'Material Symbols Outlined';
+  content: attr(data-icono-menu);
+  right: 30px;
+  bottom: 8px;
+  font-size: 3rem;
+  color: rgb(136, 76, 17);
+}

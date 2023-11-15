@@ -1,16 +1,16 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
 import CssBaseline from '@mui/material/CssBaseline';
 
-import BarraPrincipal from './componentes/BarraPrincipal';
-import Sugerencias from './componentes/Sugerencias/Sugerencias';
+import BarraPrincipal from './componentes/BarraPrincipal/BarraPrincipal';
+import Inicio from './componentes/Inicio/Inicio';
+import Recetas from './componentes/Recetas/Recetas';
 
 import './App.css';
 
 function App() {
-
   const defaultTheme = createTheme({
     palette: {
       mode: 'light',
@@ -27,14 +27,15 @@ function App() {
     <>
       <ThemeProvider theme={defaultTheme}>
         <CssBaseline />
-        <BarraPrincipal></BarraPrincipal>
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={2}>
-            <Grid xs={12}>
-              <Sugerencias></Sugerencias>
-            </Grid>
-          </Grid>
-        </Box>
+        <BrowserRouter>
+          <BarraPrincipal></BarraPrincipal>
+          <Box sx={{ flexGrow: 1 }} className="contenedor">
+            <Routes>
+              <Route path="/" exact element={<Inicio></Inicio>} />
+              <Route path="/recetas" element={<Recetas></Recetas>} />
+            </Routes>
+          </Box>
+        </BrowserRouter>
       </ThemeProvider>
     </>
   );
