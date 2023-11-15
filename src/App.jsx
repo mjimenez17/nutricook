@@ -7,6 +7,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import BarraPrincipal from './componentes/BarraPrincipal/BarraPrincipal';
 import Inicio from './componentes/Inicio/Inicio';
 import Recetas from './componentes/Recetas/Recetas';
+import DetallesReceta from './componentes/Recetas/DetallesReceta/DetallesReceta';
+import MisRecetas from './componentes/MisRecetas/MisRecetas';
 
 import './App.css';
 
@@ -33,6 +35,11 @@ function App() {
             <Routes>
               <Route path="/" exact element={<Inicio></Inicio>} />
               <Route path="/recetas" element={<Recetas></Recetas>} />
+              <Route
+                path="/receta/:idReceta"
+                element={<DetallesReceta></DetallesReceta>}
+              />
+              <Route path="/mis-recetas" element={<MisRecetas></MisRecetas>} />
             </Routes>
           </Box>
         </BrowserRouter>

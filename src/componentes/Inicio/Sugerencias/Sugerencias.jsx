@@ -37,12 +37,14 @@ const Sugerencias = () => {
             const recetasDeLaAPI = await consulta.json();
             recetasDeLaAPI.meals.map((receta) => {
               receta.elementoCarrusel = (
-                <img
-                  style={{ maxHeight: '150px' }}
-                  src={`${receta.strMealThumb}/preview`}
-                  onDragStart={procesaArrastre}
-                  role="presentation"
-                />
+                <Link to={`receta/${receta.idMeal}`}>
+                  <img
+                    style={{ maxHeight: '150px' }}
+                    src={`${receta.strMealThumb}/preview`}
+                    onDragStart={procesaArrastre}
+                    role="presentation"
+                  />
+                </Link>
               );
             });
             const elementosDelCarrusel = recetasDeLaAPI.meals.map(

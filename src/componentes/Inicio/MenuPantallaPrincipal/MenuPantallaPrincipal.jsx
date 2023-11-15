@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 import Grid from '@mui/material/Unstable_Grid2';
 import ChecklistRtl from '@mui/icons-material/ChecklistRtl';
-import MonitorWeight from '@mui/icons-material/MonitorWeight';
-import ShoppingCart from '@mui/icons-material/ShoppingCart';
+/* import MonitorWeight from '@mui/icons-material/MonitorWeight';
+import ShoppingCart from '@mui/icons-material/ShoppingCart'; */
 
 import './MenuPantallaPrincipal.css';
 
@@ -15,7 +15,7 @@ const MenuPantallaPrincipal = () => {
       icono: <ChecklistRtl />,
       codigoIcono: '\ue6b3',
     },
-    {
+    /* {
       opcion: 'Mis medidas',
       ruta: 'mis-medidas',
       icono: <MonitorWeight />,
@@ -26,7 +26,7 @@ const MenuPantallaPrincipal = () => {
       ruta: 'mi-lista',
       icono: <ShoppingCart />,
       codigoIcono: '\ue8cc',
-    },
+    }, */
   ];
 
   return (
