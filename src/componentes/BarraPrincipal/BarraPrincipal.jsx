@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 
 import HomeRounded from "@mui/icons-material/HomeRounded";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 
 import "./BarraPrincipal.css";
 
@@ -32,7 +32,7 @@ const BarraPrincipal = () => {
               </Link>
             </div>
           )}
-          {location.pathname !== "/inicia-sesion" && (
+          {!["/inicia-sesion", "/registro"].includes(location.pathname) && (
             <div>
               <Link to="/cierra-sesion" style={{ color: "inherit" }}>
                 <IconButton size="large" color="inherit">

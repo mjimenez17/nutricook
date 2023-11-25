@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -99,7 +99,7 @@ const Sesion = () => {
                       }
                     />
                   </Grid>
-                  <Grid xs display={"flex"} justifyContent={"flex-end"}>
+                  <Grid xs display={"flex"} flexDirection={"column"} alignItems={"flex-end"} gap={2}>
                     <Button
                       type="submit"
                       disabled={isSubmitting}
@@ -108,6 +108,9 @@ const Sesion = () => {
                     >
                       Inicia sesión
                     </Button>
+                    <Link to="/registro">
+                      O también puedes crear una nueva cuenta aquí.
+                    </Link>
                   </Grid>
                 </Grid>
               </Form>

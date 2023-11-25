@@ -28,7 +28,7 @@ const Registro = () => {
   return (
     <div>
       <Grid xs container justifyContent={"center"}>
-        <h1>Inicia sesión</h1>
+        <h1>Nueva cuenta</h1>
       </Grid>
       <Formik
         initialValues={{
