@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -11,29 +12,15 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
-import "./MisRecetas.css";
 import useToken from "../../hooks/useToken";
 
+import "./MisRecetas.css";
+
 const MisRecetas = () => {
+  const token = useToken();
   const [muestraIndicadorCarga, estableceIndicadorCarga] = useState(true);
   const [errorCarga, estableceErrorCarga] = useState(null);
   const [recetas, estableceRecetas] = useState([]);
-  // const [token, estableceToken] = useState(null);
-  const token = useToken();
-
-  /* const recuperaFavoritosGuardados = () => {
-    const favoritosGuardados = localStorage.getItem("NutriCook")
-      ? JSON.parse(localStorage.getItem("NutriCook"))
-      : { favoritos: [] };
-    return favoritosGuardados.favoritos;
-  }; */
-
-  /* const recuperaConfiguracion = () => {
-    const nutricookConfig = localStorage.getItem("NutriCook")
-      ? JSON.parse(localStorage.getItem("NutriCook"))
-      : {};
-    return nutricookConfig;
-  }; */
 
   const recuperaFavoritosGuardadosServidor = async () => {
     let recetasFavoritasGuardadas = [];
@@ -53,15 +40,6 @@ const MisRecetas = () => {
     }
     return recetasFavoritasGuardadas;
   };
-
-  /* useEffect(() => {
-    const nutricookConfig = recuperaConfiguracion();
-    if (nutricookConfig) {
-      if (Object.hasOwnProperty.call(nutricookConfig, "token")) {
-        estableceToken(nutricookConfig.token);
-      }
-    }
-  }, []); */
 
   useEffect(() => {
     if (token) {

@@ -19,23 +19,18 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { pink } from "@mui/material/colors";
 
+import useToken from "../../hooks/useToken";
+
 import "./Recetas.css";
 
 const Recetas = () => {
+  const token = useToken();
   const [muestraIndicadorCarga, estableceIndicadorCarga] = useState(true);
   const [errorCarga, estableceErrorCarga] = useState(null);
   const [recetas, estableceRecetas] = useState([]);
   const [palabrasClave, establecePalabrasClave] = useState("");
   // const [tarjetasExpandidas, estableceTarjetaExpandida] = useState([]);
   const [favoritos, estableceFavoritos] = useState([]);
-  const [token, estableceToken] = useState(null);
-
-  const recuperaConfiguracion = () => {
-    const nutricookConfig = localStorage.getItem("NutriCook")
-      ? JSON.parse(localStorage.getItem("NutriCook"))
-      : {};
-    return nutricookConfig;
-  };
 
   const recuperaFavoritosGuardadosServidor = async () => {
     let recetasFavoritasGuardadas = [];
@@ -91,21 +86,17 @@ const Recetas = () => {
     });
   };
 
+  const procesaBusqueda = (palabrasClave) => {
+    estableceIndicadorCarga(true);
+    establecePalabrasClave(palabrasClave);
+  };
+
   /* const procesaExpansionTarjeta = (tarjeta) => {
     const nuevasTarjetas = !tarjetasExpandidas.includes(tarjeta)
       ? [...tarjetasExpandidas, tarjeta]
       : tarjetasExpandidas.filter((t) => t !== tarjeta);
     estableceTarjetaExpandida(nuevasTarjetas);
   }; */
-
-  useEffect(() => {
-    const nutricookConfig = recuperaConfiguracion();
-    if (nutricookConfig) {
-      if (Object.hasOwnProperty.call(nutricookConfig, "token")) {
-        estableceToken(nutricookConfig.token);
-      }
-    }
-  }, []);
 
   useEffect(() => {
     if (token) {
@@ -158,11 +149,6 @@ const Recetas = () => {
       })();
     }
   }, [token, muestraIndicadorCarga, palabrasClave]);
-
-  const procesaBusqueda = (palabrasClave) => {
-    estableceIndicadorCarga(true);
-    establecePalabrasClave(palabrasClave);
-  };
 
   if (muestraIndicadorCarga) {
     return (

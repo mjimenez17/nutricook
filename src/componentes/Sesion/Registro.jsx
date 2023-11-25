@@ -6,18 +6,23 @@ import * as Yup from "yup";
 import Grid from "@mui/material/Unstable_Grid2";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import LoginIcon from "@mui/icons-material/Login";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
-import("./Sesion.css");
+import("./Registro.css");
 
 const ValidacionSchema = Yup.object().shape({
+  nombre: Yup.string().required("El campo nombre es requerido."),
+  apellido: Yup.string().required("El campo apellido es requerido."),
   correo: Yup.string()
     .email("Esto no parece ser un correo electrónico válido.")
     .required("El correo electrónico es un campo obligatorio."),
   clave: Yup.string().required("La contraseña es un campo obligatorio."),
+  confirmaClave: Yup.string()
+    .required("Es necesario que confirmes tu contraseña.")
+    .oneOf([Yup.ref("clave"), null], "Las contraseñas no coinciden."),
 });
 
-const Sesion = () => {
+const Registro = () => {
   const navigate = useNavigate();
 
   return (
@@ -26,21 +31,24 @@ const Sesion = () => {
         <h1>Inicia sesión</h1>
       </Grid>
       <Formik
-        initialValues={{ correo: "", clave: "" }}
+        initialValues={{
+          nombre: "",
+          apellido: "",
+          correo: "",
+          clave: "",
+          confirmaClave: "",
+        }}
         validationSchema={ValidacionSchema}
         onSubmit={(values, { setSubmitting }) => {
           (async () => {
             try {
-              const consulta = await fetch(
-                `http://localhost:8000/inicia-sesion`,
-                {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(values),
-                }
-              );
+              const consulta = await fetch(`http://localhost:8000/registro`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values),
+              });
               if (consulta.ok) {
                 const respuestaAPI = await consulta.json();
                 const nutricookConfig = localStorage.getItem("NutriCook")
@@ -73,6 +81,36 @@ const Sesion = () => {
                       as={TextField}
                       autoFocus
                       fullWidth
+                      type="text"
+                      name="nombre"
+                      label="Nombre"
+                      error={touched.nombre && !!errors.nombre}
+                      helperText={
+                        touched.nombre && errors.nombre ? (
+                          <span>{errors.nombre}</span>
+                        ) : null
+                      }
+                    />
+                  </Grid>
+                  <Grid>
+                    <Field
+                      as={TextField}
+                      fullWidth
+                      type="text"
+                      name="apellido"
+                      label="Apellidos"
+                      error={touched.apellido && !!errors.apellido}
+                      helperText={
+                        touched.apellido && errors.apellido ? (
+                          <span>{errors.apellido}</span>
+                        ) : null
+                      }
+                    />
+                  </Grid>
+                  <Grid>
+                    <Field
+                      as={TextField}
+                      fullWidth
                       type="email"
                       name="correo"
                       label="Correo electrónico"
@@ -99,14 +137,29 @@ const Sesion = () => {
                       }
                     />
                   </Grid>
+                  <Grid className={"confirma-clave"}>
+                    <Field
+                      as={TextField}
+                      fullWidth
+                      type="password"
+                      name="confirmaClave"
+                      label="Repite tu contraseña"
+                      error={touched.confirmaClave && !!errors.confirmaClave}
+                      helperText={
+                        touched.confirmaClave && errors.confirmaClave ? (
+                          <span>{errors.confirmaClave}</span>
+                        ) : null
+                      }
+                    />
+                  </Grid>
                   <Grid xs display={"flex"} justifyContent={"flex-end"}>
                     <Button
                       type="submit"
                       disabled={isSubmitting}
                       variant="contained"
-                      endIcon={<LoginIcon />}
+                      endIcon={<PersonAddIcon />}
                     >
-                      Inicia sesión
+                      Crear cuenta
                     </Button>
                   </Grid>
                 </Grid>
@@ -119,4 +172,4 @@ const Sesion = () => {
   );
 };
 
-export default Sesion;
+export default Registro;

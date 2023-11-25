@@ -5,15 +5,19 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import BarraPrincipal from "./componentes/BarraPrincipal/BarraPrincipal";
+
+import Registro from "./componentes/Sesion/Registro";
 import Sesion from "./componentes/Sesion/Sesion";
 import CierraSesion from "./componentes/Sesion/CierraSesion";
+
 import Inicio from "./componentes/Inicio/Inicio";
 import Recetas from "./componentes/Recetas/Recetas";
 import DetallesReceta from "./componentes/Recetas/DetallesReceta/DetallesReceta";
 import MisRecetas from "./componentes/MisRecetas/MisRecetas";
 
-import "./App.css";
 import AutenticadoGuard from "./guards/AutenticadoGuard";
+
+import "./App.css";
 
 function App() {
   const defaultTheme = createTheme({
@@ -41,6 +45,7 @@ function App() {
                 exact
                 element={<AutenticadoGuard componente={<Inicio></Inicio>} />}
               />
+              <Route path="/registro" element={<Registro></Registro>} />
               <Route path="/inicia-sesion" element={<Sesion></Sesion>} />
               <Route
                 path="/cierra-sesion"
