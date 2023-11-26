@@ -202,7 +202,10 @@ const Recetas = () => {
         </Grid>
         <Grid container spacing={2} xs={12}>
           {recetas.map((receta) => (
-            <Grid xs={4} lg={3} key={receta.idMeal} className="tarjeta-receta">
+            <Grid xs={12}
+            sm={6}
+            md={4}
+            lg={3} key={receta.idMeal} className="tarjeta-receta">
               <div>
                 <Card sx={{ maxWidth: 345 }}>
                   <CardHeader

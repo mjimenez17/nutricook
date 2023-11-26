@@ -16,7 +16,8 @@ const ValidacionSchema = Yup.object().shape({
   correo: Yup.string()
     .email("Esto no parece ser un correo electrónico válido.")
     .required("El correo electrónico es un campo obligatorio."),
-  clave: Yup.string().required("La contraseña es un campo obligatorio."),
+  clave: Yup.string().required("La contraseña es un campo obligatorio.")
+  .min(8, "La contraseña debe tener al menos 8 caracteres."),
   confirmaClave: Yup.string()
     .required("Es necesario que confirmes tu contraseña.")
     .oneOf([Yup.ref("clave"), null], "Las contraseñas no coinciden."),
@@ -59,6 +60,7 @@ const Registro = () => {
                   "NutriCook",
                   JSON.stringify(nutricookConfig)
                 );
+                alert("Usuario creado correctamente");
                 navigate("/");
               } else {
                 setSubmitting(false);

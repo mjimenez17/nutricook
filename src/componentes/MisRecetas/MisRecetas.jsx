@@ -147,7 +147,10 @@ const MisRecetas = () => {
         </Grid>
         <Grid container xs={12} spacing={2}>
           {recetas.map((receta) => (
-            <Grid xs={4} key={`receta-favorita-${receta.idMeal}`}>
+            <Grid xs={4}
+            sm={6}
+            md={4}
+            lg={3} key={`receta-favorita-${receta.idMeal}`}>
               <div>
                 <Card sx={{ display: "flex" }}>
                   <CardMedia
