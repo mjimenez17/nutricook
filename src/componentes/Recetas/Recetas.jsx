@@ -81,7 +81,7 @@ const Recetas = () => {
   const procesaFavoritos = () => {
     const recetasFavoritasGuardadas = recuperaFavoritosGuardadosServidor();
     recetasFavoritasGuardadas.then((recetas) => {
-      const recetasFavoritasGuardadas = recetas.map((r) => r.id);
+      const recetasFavoritasGuardadas = recetas.map((r) => r.idReceta);
       estableceFavoritos(recetasFavoritasGuardadas);
     });
   };

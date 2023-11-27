@@ -50,7 +50,7 @@ const MisRecetas = () => {
             const recetasFavoritasGuardadas =
               recuperaFavoritosGuardadosServidor();
             recetasFavoritasGuardadas.then(async (recetas) => {
-              const recetasFavoritasGuardadas = recetas.map((r) => r.id);
+              const recetasFavoritasGuardadas = recetas.map((r) => r.idReceta);
               recetasFavoritasGuardadas.map((idRecetaFavorita) => {
                 consultas.push(
                   fetch(
